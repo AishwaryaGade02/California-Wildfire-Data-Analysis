@@ -16,32 +16,63 @@ Cause: Cause of wild fire <br/>
 Year: When the wild fire happened <br/>
 
 ### Findings from Exploratory Data Analysis <br/>
-1. Most of the wildfires are caused by Human Activities
-2. Most number of wild fires occured in Shasta County
-3. There are most number of wildfires in October 2018 in California
-4. The wildfire that caused most financial loss happened in 2019 in Butte County
-5. The wildfire that caused damage to most of the land happened in Shasta County in 2016 caused due to lightening
-6. There is no strong correlation between the variables
 
+1. The majority of wildfires are caused by human activities.
+
+2. Shasta County experienced the highest number of wildfires.
+
+3. The highest number of wildfires occurred in October 2018.
+
+4. The wildfire with the most financial loss occurred in 2019 in Butte County.
+
+5. The largest wildfire (by area burned) occurred in Shasta County in 2016 due to lightning.
+
+6. No strong correlation was observed between the numerical variables in the dataset.
 ### New Feature Creation and Correlation Analysis <br/>
-I wanted to explore if there is any linear relation between the size of the county and the cause of the wildfire. Assumption of this analysis is that the wildfire caused in large counties
-is more due to Human cause. Hence I extracted the population of all the counties that are present in the dataset from wikipedia using BeautifulSoup. After extracting the 
-population I calculated the correlation between population of county and wildfires caused by Human Activities. The cause column in the dataset is encoded to get wildfires caused
-by Humans column. The correlation between population of county and wildfires caused by Human Activities is -0.1497, which suggests that there is no correlation between population 
-of the county and the wildfires caused by Human Activities
+To explore whether larger counties experience more human-caused wildfires, the following approach was used:
+
+County population data was scraped from Wikipedia using BeautifulSoup.
+
+The correlation between county population and wildfires caused by human activities was calculated.
+
+The "Cause" column was encoded to extract human-caused wildfires.
+
+Correlation coefficient: -0.1497, indicating no significant relationship between county population and human-caused wildfires.
 
 ### Hypothesis Testing <br/>
-From the data visualization, it is observed that the small counties are having more wildfires than the larger ones. Hence I wanted to test this hypothesis. First we need to distinquish
-between small and large counties. To do that, I calculated the median of population of the counties. If any population is less than the median then that county is treated as small county
-and if any county's population is greater than the median values then that county is treated as big county. Then I added new columns which gives information about the count of 
-each cause in that particular county. I created two dataframes small_counties and large_counties including the count of causes. As the data I have is not normally distributed, I
-used Mann-Whitney U test to test the hypothesis <br/>
+From visualization, it appeared that smaller counties may experience more wildfires than larger counties. To validate this, hypothesis testing was performed:
 
-Null Hypothesis: The number of wildfires in small and large counties is the same
-Alternate Hypothesis: Smaller counties have more wildfires than larger counties <br/>
+#### Hypotheses:
 
-The result of the test is given as below<br/>
-U-statistic: 1386.0 <br/>
-p-value: 0.16525263394068768 <br/>
+**Null Hypothesis (H₀)**: The number of wildfires in small and large counties is the same.
 
-As p-value > 0.05, we fail to reject the null hypothesis. Hence we say that the number of wildfires in small and large counties is same
+**Alternative Hypothesis (H₁)**: Smaller counties experience more wildfires than larger counties.
+
+#### Methodology:
+
+Defining Small and Large Counties:
+
+The median county population was used as a threshold.
+
+Counties below the median were classified as small.
+
+Counties above the median were classified as large.
+
+#### Grouping Wildfire Causes:
+
+Added new columns indicating wildfire count per cause in each county.
+
+Mann-Whitney U Test (since data was not normally distributed) was used to compare wildfire counts between small and large counties.
+
+#### Test Results:
+
+U-statistic: 1386.0
+
+p-value: 0.1653
+
+#### Conclusion:
+
+Since p-value > 0.05, we fail to reject the null hypothesis. This indicates that there is no statistically significant difference in the number of wildfires between small and large counties.
+
+#### Summary
+This project conducted an analysis of the California Wildfire Dataset, uncovering insights into wildfire causes, locations, and financial impact. Although visualization suggested that smaller counties might experience more wildfires, statistical analysis did not confirm this hypothesis.
